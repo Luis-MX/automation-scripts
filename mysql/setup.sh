@@ -20,3 +20,6 @@ sudo service mysql status
 # Para detener o iniciar el servicio:
 # shell> sudo service mysql stop
 # shell> sudo service mysql start
+
+# Para ejecutar un script usar:
+# source /home/user/Desktop/test.sql;
