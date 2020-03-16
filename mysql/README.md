@@ -19,9 +19,14 @@ DROP DATABASE mydatabase;
 `
 CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'password';
 `
+o para aceptar conexiones de cualquier direccion:
+`
+CREATE USER 'myuser'@'%' IDENTIFIED BY 'password';
+`
 
 `
 GRANT ALL ON mydatabase.* TO 'myuser'@'localhost';
+FLUSH PRIVILEGES;
 `
 
 `
