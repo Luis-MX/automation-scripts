@@ -1,0 +1,12 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "generic/ubuntu1804"
+
+  config.vm.network "public_network"
+
+  # This run a script located in host machine every vagrant up
+  config.vm.provision "shell", path: "apache_setup.sh", run: "always"
+end
