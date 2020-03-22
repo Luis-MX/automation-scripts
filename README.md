@@ -19,4 +19,4 @@ echo Terminado
 
 ## Working with Ansible
 
-Script are made for ubuntu, first script is [here](../blob/master/ansible/setup.sh) and it is based on [oficial documentation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu).
+Script are made for ubuntu, first script is [here](./blob/master/ansible/setup.sh) and it is based on [oficial documentation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu).
