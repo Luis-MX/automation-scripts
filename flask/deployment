@@ -1,0 +1,123 @@
+Referencias: https://www.digitalocean.com/community/tutorials/como-preparar-aplicaciones-de-flask-con-gunicorn-y-nginx-en-ubuntu-18-04-es
+
+
+    1  sudo apt update
+    2  sudo apt install python3.7 python3-pip virtualenv
+    3  sudo apt install libmysqlclient-dev libssl-dev
+    4  cd proyecto/
+    5  virtualenv -p python3.7 .env
+    6  . .env/bin/activate
+    7  pip install -r requeriments.txt
+    8  exit
+    9  cd proyecto/
+   10  less requeriments.txt 
+   11  . .env/bin/activate
+   12  pip install uwsgi flask
+   13  less requeriments.txt 
+   14  nano wsgi.py
+   15  uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+   16  nano application.py 
+   17  python3 application.py 
+   18  uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+   19  nano application.py 
+   20  nano config.yaml 
+   21  uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+   22  python
+   23  python application.py 
+   24  nano application.py 
+   25  python application.py 
+   26  uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+   27  nano wsgi.py 
+   28  uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+   29  uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:application
+   30  uwsgi --socket 0.0.0.0:5000 --protocol=http -w application:app
+   31  nano mi_sitio.ini
+   32  nano /etc/systemd/system/mi_sitio.service
+   33  sudo nano /etc/systemd/system/mi_sitio.service
+   34  pwd
+   35  sudo nano /etc/systemd/system/mi_sitio.service
+   36  usermod -aG www-data <usuario>
+   37  sudo usermod -aG www-data <usuario>
+   38  sudo chown -R usuario:www-data /home/usuario/proyecto/*
+   39  sudo systemctl start mi_sitio.service 
+   40  sudo systemctl enable mi_sitio.service 
+   41  sudo nano /etc/nginx/sites-available/mi_sitio
+   42  sudo mkdir -p /etc/nginx/sites-available
+   43  sudo nano /etc/nginx/sites-available/mi_sitio
+   44  sudo ln -s /etc/nginx/sites-available/mi_sitio /etc/nginx/sites-enabled
+   45  systemctl restart nginx
+   46  sudo systemctl restart nginx
+   47  sudo apt install nginx
+   48  sudo ln -s /etc/nginx/sites-available/mi_sitio /etc/nginx/sites-enabled
+   49  sudo systemctl restart nginx
+   50  sudo nano /etc/systemd/system/mi_sitio.service
+   51  sudo usermod -aG www-data usuario
+   52  sudo chown -R usuario:www-data /home/usuario/proyecto/*
+   53  sudo systemctl start mi_sitio.service 
+   54  sudo systemctl enable mi_sitio.service 
+   55  sudo nano /etc/nginx/sites-available/mi_sitio
+   56  sudo ln -s /etc/nginx/sites-available/mi_sitio /etc/nginx/sites-enabled
+   57  sudo systemctl restart nginx
+   58  sudo nano /etc/nginx/sites-available/mi_sitio
+   59  sudo systemctl restart nginx
+   60  sudo journalctl nginx
+   61  sudo journalctl --tail nginx
+   62  journalctl --help
+   63  nano wsgi.py 
+   64  nano mi_sitio.ini 
+   65  ls /tmp/
+   66  ls /tmp/systemd-private-eeb661c9c7eb43bdb9eabb030fe9b52a-chrony.service-UhAiJ3/
+   67  ls -l /tmp/systemd-private-eeb661c9c7eb43bdb9eabb030fe9b52a-chrony.service-UhAiJ3/
+   68  sudo ls -l /tmp/systemd-private-eeb661c9c7eb43bdb9eabb030fe9b52a-chrony.service-UhAiJ3/
+   69  cd ..
+   70  ls
+   71  sudo /etc/init.d/nginx start
+   72  sudo rm /etc/nginx/sites-enabled/default
+   73  sudo touch /etc/nginx/sites-available/flask_settings
+   74  sudo ln -s /etc/nginx/sites-available/flask_settings /etc/nginx/sites-enabled/flask_settings
+   75  echo "server {
+   76  access_log /var/log/nginx/myapp.log
+   77  location / {
+   78  proxy_pass http://127.0.0.1:8000;
+   79  proxy_set_header Host \$host;
+   80  proxy_set_header X-Real-IP \$remote_addr;
+   81  }
+   82  sudo nano /etc/nginx/sites-enabled/flask_settings
+   83  sudo /etc/init.d/nginx restart
+   84  sudo nano /etc/nginx/sites-enabled/flask_settings
+   85  journalctl -xe
+   86  sudo nano /etc/nginx/sites-enabled/flask_settings
+   87  sudo /etc/init.d/nginx restart
+   88  cd quickservices/
+   89  ls
+   90  nano application.py 
+   91  gunicorn
+   92  pip install gunicorn
+   93  which gunicorn
+   94  gunicorn application:app
+   95  sudo nano /etc/nginx/sites-enabled/flask_settings
+   96  sudo /etc/init.d/nginx start
+   97  sudo ln -s /etc/nginx/sites-available/flask_settings /etc/nginx/sites-enabled/flask_settings
+   98  sudo /etc/init.d/nginx restart
+   99  gunicorn application:app
+  100  sudo nano /etc/nginx/sites-available/
+  101  sudo rm /etc/nginx/sites-available/default 
+  102  sudo rm /etc/nginx/sites-available/mi_sitio 
+  103  sudo rm /etc/nginx/sites-enabled/mi_sitio 
+  104  sudo /etc/init.d/nginx restart
+  105  gunicorn application:app
+  106  sudo nano /etc/systemd/system/gunicorn.service
+  107  sudo unlink /etc/nginx/sites-enabled/default
+  108  sudo nano /etc/systemd/system/mi_sitio.service 
+  109  sudo systemctl start mi_sitio
+  110  systemctl daemon-reload
+  111  sudo systemctl daemon-reload
+  112  sudo systemctl start mi_sitio
+  113  sudo systemctl enable mi_sitio
+  114  sudo systemctl status mi_sitio
+  115  sudo nano /etc/nginx/sites-enabled/flask_settings
+  116  sudo nano /etc/nginx/sites-available/flask_settings
+  117  sudo nginx -t
+  118  sudo systemctl restart nginx
+  119  exit
+  120  history > deployment
