@@ -1,5 +1,13 @@
 # Gitlab y Gitlab Runner
 
+- [Instalacion](#instalacion-y-configuracion-de-gitlab-en-un-servidor-propio)
+- [Ejemplo rapido de despliegue automatizado]
+- [¿Que es?]
+- [¿Para que sirve?]
+- [¿Quien lo usa?]
+- [Descripcion]
+- [Ventajas y desventajas]
+
 Ejecuta gitlab en un propio servidor para obtener una mayor cantidad
 de caracterirticas gratuitas y con mas control.
 
