@@ -59,6 +59,88 @@ La instalacion y ejemplo se encuentra tambien en YouTube:
 
 [![Deployment con GitLab Runner](http://img.youtube.com/vi/hVdbkZ8vdvQ/0.jpg)](http://www.youtube.com/watch?v=hVdbkZ8vdvQ "Deployment con GitLab Runner")
 
+1. Primero se requiere un repositorio.
+
+2. Se debe crear un Runner y registrarlo al servidor de gitlab donde se tenga tal repositorio,
+este debe estar instalado en la instancia donde se desea publicar la aplicacion o sitio
+
+3. En el repositorio se deben crear los siguientes archivos:
+
+Un ejemplo simple de despliegue en flask requiere 4 archivos en el repositorio: el mas
+importante es `.gitlab-ci.yml`, este pose las intrucciones para implementar
+un pipeline de integracion continua, el siguiente pipeline tiene un un job llamado
+`before_script` que limpia la version anterior del sitio cada que es actualizado,
+`deploy_prod` se encarga tomar el codigo flask y empaquetarlo dentro de una imagen
+de docker que usa de base python3 para correr el sitio y publicarlo automaticamente
+en el puerto 80 de la instancia donde es ejecutado, esto es realizado en cada cambio
+enviado al repositorio:
+
+```yml
+stages:
+  - deploy
+
+before_script:
+  - sudo docker rm --force flask_container || echo "Error al borrar un contenedor"
+  - sudo docker rmi $(docker images -a -q) || echo "Error al borrar las imagenes de docker"
+  - rm -rf $HOME/site/*
+
+deploy_prod:
+  stage: deploy
+  script:
+    - if [[ !(-d $HOME/site) ]]; then
+    - mkdir -p $HOME/site
+    - fi
+    - cp * $HOME/site
+    - cd $HOME/site
+    - sudo docker build -t flask_image .
+    - sudo docker run --publish 80:5000 --detach --name flask_container flask_image
+  environment:
+    name: production
+    url: http://34.71.228.251/
+  only:
+    - master
+```
+
+Los demas archivos son parte del proyecto, el codigo de la aplicacion se encuentra en
+`app.py`:
+
+```python
+from flask import Flask
+import datetime
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hola mundo {}'.format(3 ** 5)
+```
+
+Las dependencias se encuantran en `requirements.py`:
+
+```
+Flask==1.0.2
+```
+
+Y por ultimo el archivo `Dockerfile`, usar docker es de los metodos mas sencillos
+para configurar y desplegar una aplicacion de forma automatizada:
+
+```
+FROM python:3
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN export FLASK_APP=app.py
+RUN export FLASK_ENV=development
+
+EXPOSE 5000
+
+CMD [ "flask", "run", "--host=0.0.0.0"]
+```
+
 ## Que es
 
 Segun el mismo sitio [https://about.gitlab.com/](https://about.gitlab.com/);
@@ -90,4 +172,29 @@ Ejemplos de clientes de GitLab son:
 
 ## Descripcion
 
+Ambas herramientas se pueden utilizar desde gitlab.com como un servicio con
+con limitaciones sin necesidad de requerir infraestrucutra, esto es preferible
+en caso de desarrolladores individuales, a nivel empresarial es mas rentable
+instalar estas herramientas en infraestrucura propia y sin limitaciones en
+proyectos, usuarios, administracion y funcionalidad.
+
+Dos elementos clave son el servidor de GitLab para administracion de codigo
+y proyectos, mientras que GitLab Runner permite automatizar operaciones que
+son ajenas al codigo; por ejemplo la compilacion de releases, la publicacion
+de cobertura de codigo, pruebas unitarias, despliegue de proyectos a diferentes
+etapas o plataformas, entre otros.
+
+GitLab simplemente es una plataforma de administracionde repositorios y proyectos
+igualmente que BitBucket y Github, con la diferencia de ser Open Source.
+
+Giltab Runner automatiza Pipelines ejecutandolas a traves de eventos, scripts
+cargados en entornos virtuales llamados executors como el shell o imagenes de
+docker. No posee dependencias y esta escrito en Go.
+
 ## Ventajas y desventajas
+
+| Ventajas                                                                                                          | Deventajas                                                                                                      |
+| ----------------------------------------------------------------------------------------------------------------- |----------------------------------------------------------------------------------------------------------------:|
+| Es Open Source                                                                                                    | Siendo abierto no impulsa a la comunidad Open Source como en Github, sino a grandes corporativos                |
+| Permite ejecutarse en infraestructura propia                                                                      | El servicio no es muy atractivo para desarrolladores individuales a diferencia de otros ecosistemas como github |
+| Integra en una sola plataforma muchas, tantas herramientas que por si solas usarlas juntas llevaria mucho trabajo | Su documentacion es pobre, lo que provoca que aun siendo un gran producto la mayoria desconosca sus capacidades |
