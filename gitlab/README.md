@@ -26,7 +26,9 @@ y la contraseña especificada.
 
 Los comandos de instalcion en ubuntu se encuentran en el [siguiente script](./gitlab-runner-setup.sh).
 
-Es basado en la documentacion oficial: [https://docs.gitlab.com/runner/install/linux-manually.html](https://docs.gitlab.com/runner/install/linux-manually.html)
+Es basado en la documentacion oficial:
+
+[https://docs.gitlab.com/runner/install/linux-manually.html](https://docs.gitlab.com/runner/install/linux-manually.html)
 
 Mostrar ayuda de gitlab runner:
 
