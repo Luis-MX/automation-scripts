@@ -56,7 +56,7 @@ Archivo de configuracion en `/etc/gitlab-runner/config.toml`.
 ## Ejemplo
 
 La instalacion y ejemplo se encuentra tambien en YouTube:
-[![Despliegue automatizado con Gitlab Runner](https://img.youtube.com/vi/hVdbkZ8vdvQ&t=221s/0.jpg)](https://www.youtube.com/watch?v=hVdbkZ8vdvQ&t=221s)
+[![Deployment con GitLab Runner](http://img.youtube.com/vi/hVdbkZ8vdvQ/0.jpg)](http://www.youtube.com/watch?v=hVdbkZ8vdvQ "Deployment con GitLab Runner")
 
 ## Que es
 
