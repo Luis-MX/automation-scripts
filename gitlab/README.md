@@ -86,6 +86,8 @@ organizaciones o empresas privadas que por desarrolladores indivuduales.
 
 Ejemplos de clientes de GitLab son: 
 
+![Deployment con GitLab Runner](./images/screenshot.png)
+
 ## Descripcion
 
 ## Ventajas y desventajas
