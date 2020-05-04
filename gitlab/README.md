@@ -12,7 +12,9 @@
 
 ### Servidor de Gitlab
 
-Los comandos de instalcion en ubuntu se encuentran en el [script](./setup.sh).
+Los comandos de instalcion en ubuntu se encuentran en el [siguiente script](./setup.sh).
+
+Es basado en la documentacion oficial: [https://about.gitlab.com/install/#ubuntu](https://about.gitlab.com/install/#ubuntu)
 
 Despues de la instalacion se debe configurar la cuenta de administrador.
 Cuando se accede por primera vez a la direccion especificada para el
@@ -22,7 +24,9 @@ y la contraseña especificada.
 
 ### Instalacion y configuracion de Gitlab Runner en un servidor propio
 
-Los comandos de instalcion en ubuntu se encuentran en el [script](./gitlab-runner-setup.sh).
+Los comandos de instalcion en ubuntu se encuentran en el [siguiente script](./gitlab-runner-setup.sh).
+
+Es basado en la documentacion oficial: [https://docs.gitlab.com/runner/install/linux-manually.html](https://docs.gitlab.com/runner/install/linux-manually.html)
 
 Mostrar ayuda de gitlab runner:
 
@@ -51,7 +55,19 @@ Archivo de configuracion en `/etc/gitlab-runner/config.toml`.
 
 ## Ejemplo
 
+La instalacion y ejemplo se encuentra tambien en YouTube:
+
+[![Deployment con GitLab Runner](http://img.youtube.com/vi/hVdbkZ8vdvQ/0.jpg)](http://www.youtube.com/watch?v=hVdbkZ8vdvQ "Deployment con GitLab Runner")
+
 ## Que es
+
+Segun el mismo sitio [https://about.gitlab.com/](https://about.gitlab.com/);
+"GitLab es una completa plataforma de Devops: Con GitLab, obtienes un completo
+conjunto de herramientas de CI/CD en una sola aplicacion. Una interface. Una
+conversacion. Un modelo de permisos. Miles de caracteristicas. Te asombrara
+todo lo que GitLab puede hacer hoy. Y solo estamos comenzando"
+
+## Para que sirve
 
 Ejecuta gitlab en un propio servidor para obtener una mayor cantidad
 de caracterirticas gratuitas y con mas control.
@@ -63,9 +79,12 @@ git, implementacion de pipelines como en jenkins, etc. En [gitlab.com](https://g
 se proporciona de forma gratuita 2,000 minutos al mes de soporte para runners
 mientras que con un runner propio se puede usar de forma ilimitada.
 
-## Para que sirve
-
 ## Quien lo usa
+
+Algo muy caracteristico de GitLab es que es mayormente usado por grandes
+organizaciones o empresas privadas que por desarrolladores indivuduales.
+
+Ejemplos de clientes de GitLab son: 
 
 ## Descripcion
 
